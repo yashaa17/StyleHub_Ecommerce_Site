@@ -251,7 +251,7 @@ export default function Navigation() {
 
       <header className="relative bg-white">
         <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-          Get free delivery on orders over Rs.500
+          Get free delivery on orders over Rs.5000
         </p>
 
         <nav aria-label="Top" className="mx-auto">
@@ -271,7 +271,7 @@ export default function Navigation() {
                { /*<Link to="/">*/}
                   <span className="sr-only">Your Company</span>
                   <img
-                    src="https://res.cloudinary.com/ddkso1wxi/image/upload/v1675919455/Logo/Copy_of_Zosh_Academy_nblljp.png"
+                    src="data:image/png;base64,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"
                     alt="Shopwithzosh"
                     className="h-8 w-8 mr-2"
                   />
