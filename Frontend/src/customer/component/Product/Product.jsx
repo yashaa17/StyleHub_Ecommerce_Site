@@ -22,7 +22,7 @@ import { mens_kurta } from '../../../Data/mens_kurta';
 import { filters,singleFilter } from './FilterData'
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { useLocation } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 
 
 
@@ -41,6 +41,7 @@ function classNames(...classes) {
 export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const location=useLocation()
+  const navigate=useNavigate();
 
   const handleFilter=(value, sectionId)=>{
     const searchParams=new URLSearchParams(location.search)
@@ -55,7 +56,25 @@ export default function Product() {
       }
 
   }
+  else{
+    filterValue.push(value)
+  }
+
+  if(filterValue.length>0){
+    searchParams.set(sectionId,filterValue.join(","));
+    
+  }
+  const query=searchParams.toString();
+    navigate({search:`?${query}`})
 }
+
+  const handleRadioFilterChange=(e,sectionId)=>{
+    const searchParams=new URLSearchParams(location.search)
+
+    searchParams.set(sectionId,e.target.value)
+    const query=searchParams.toString();
+    navigate({search:`?${query}`})
+  }
 
   return (
     <div className="bg-white">
@@ -239,6 +258,7 @@ export default function Product() {
                             <div className="flex h-5 shrink-0 items-center">
                               <div className="group grid size-4 grid-cols-1">
                                 <input
+                                  onChange={()=>handleFilter(option.value,section.id)}
                                   defaultValue={option.value}
                                   defaultChecked={option.checked}
                                   id={`filter-${section.id}-${optionIdx}`}
@@ -302,7 +322,7 @@ export default function Product() {
                         {section.options.map((option, optionIdx) => (
                             
                           <>
-                            <FormControlLabel value={option.id} control={<Radio />} label={option.label} />
+                            <FormControlLabel onChange={(e)=>handleRadioFilterChange(e,section.id)} value={option.value} control={<Radio />} label={option.label} />
                             {/* <FormControlLabel value="male" control={<Radio />} label="Male" />
                             <FormControlLabel value="other" control={<Radio />} label="Other" /> */}
                           </>
