@@ -5,6 +5,8 @@ import { Rating,Button, Box, LinearProgress } from '@mui/material'
 
 import Grid from '@mui/material/Grid';
 import ProductReviewCard from './ProductReviewCard';
+import { mens_kurta } from '../../../Data/mens_kurta';
+import HomeSectionCard from '../HomeSectionCard/HomeSectionCard';
 
 
 const product = {
@@ -330,6 +332,16 @@ export default function ProductDetails() {
             </div>
 
          </section>
+
+    {/* Similar Products */}
+    <section className="pt-10">
+          <h1 className='py-5 text-xl font-bold'>Similar Products </h1>\
+
+          <div className="flex flex-wrap space-y-5">
+                  {mens_kurta.map((item)=><HomeSectionCard product={item}/>)}
+          </div>
+          
+    </section>
 
          
 
