@@ -4,7 +4,7 @@ const AddressCard = () => {
   return (
     <div>
         <div className='space-y-3'>
-            <p className='font-semibold'>Satvik Choudhari</p>
+            <p className='font-semibold'>Yash Sadabal</p>
             <p>Amravati, Chaya Nagar, 444607</p>
             <div className='space-y-1'>
                 <p className='font-semibold'>Phone Number</p>
